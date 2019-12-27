@@ -1,0 +1,99 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Run a multi-line script
+      run: |
+        echo Add other actions to build,
+        echo test, and deploy your project.
+
+
+◆変数の代入(Bと表示)
+  例
+    SET A=B
+    ECHO %A%
+
+◆エスケープシーケンス('%'を表示)
+  例
+    ECHO %%
+
+◆引数の受け渡し「%1」～「%9」
+  例
+    [hoge1.bat]
+      hoge2.bat a b
+    [hoge2.bat]
+      ECHO %1%2
+    [出力]
+      ab
+
+◆条件分岐 IF文
+  例①
+    IF "%1" == "" (
+        ECHO BLANK
+    )
+     
+    IF NOT "%1" == "" (
+        ECHO NOT BLANK
+    )
+  結果 : BLANK
+
+  例②
+    IF "%1" == "" (
+        ECHO BLANK
+    ) ELSE (
+        ECHO NOT BLANK
+    )
+
+    IF "%1" == "" (
+        ECHO BLANK
+    ) ELSE IF NOT "%1" == "" (
+        ECHO NOT BLANK
+    )
+  結果 : BLANK
+         BLANK
+
+◆繰り返し FOR文
+  例
+    FOR %%I IN (a b c) DO (
+        ECHO %%I
+    )
+    結果 : a
+           b
+           c
+
+◆ファイルがあるかどうか調べる  ～IF EXIST～
+  例
+    IF EXIST hoge.txt (
+        ECHO hoge.txt is exists
+    )
+
+    IF NOT EXIST hoge.txt (
+        ECHO hoge.txt is not exists
+    )
+
+◆ファイル内容を読み込む
+  例
+    FOR /F %%I IN (hoge.txt) DO (
+      ECHO %%I
+  )
+
+◆ファイルの内容を調べる()
+  例
+    FINDSTR "abc" hoge.txt
+
+◆本日の年月日
+  例
+    ECHO %date:~-10,4%%date:~-5,2%%date:~-2,2%
+
+
+【記事URL】
+    https://cloned.hatenablog.com/entry/20080822
